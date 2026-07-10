@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="860" height="1516" viewBox="0 0 860 1516" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">渡的小窝</title>
+  <desc id="desc">个人 AI 实验室主页，包含当前方向、成长路径、GitHub 雷达、知识树和代表项目。</desc>
+  <g id="header" transform="translate(0 0)">
+    <path d="M22 0H838Q860 0 860 22V210H0V22Q0 0 22 0Z" fill="#D6ECFF"/>
+    <rect x="28" y="30" width="804" height="180" fill="#EAF6FF" stroke="#D6ECFF"/>
+    <circle cx="64" cy="58" r="5" fill="#E0B84D"/>
+    <circle cx="86" cy="58" r="5" fill="#5FBF9F"/>
+    <circle cx="108" cy="58" r="5" fill="#5DA8E8"/>
+    <line x1="48" y1="84" x2="812" y2="84" stroke="#D6ECFF"/>
+    <text x="60" y="130" fill="#0B132B" font-size="50" font-weight="750" font-family="Inter, 'Noto Sans SC', 'Microsoft YaHei', sans-serif">渡的小窝</text>
+    <text x="60" y="162" fill="#345B7C" font-size="17" font-weight="500" font-family="Inter, 'Noto Sans SC', 'Microsoft YaHei', sans-serif">哈喽，这里是渡的小窝哦</text>
+    <text x="60" y="198" fill="#345B7C" opacity="0.72" font-size="13" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', monospace">AI / Frontend / Transformer</text>
+    <g transform="translate(600 106)">
+      <rect x="0" y="0" width="184" height="48" fill="#F7FBFF" stroke="#D6ECFF"/>
+      <rect x="18" y="16" width="44" height="8" rx="4" fill="#5DA8E8"/>
+      <rect x="72" y="16" width="28" height="8" rx="4" fill="#E0B84D"/>
+      <rect x="110" y="16" width="54" height="8" rx="4" fill="#5FBF9F"/>
+      <line x1="18" y1="34" x2="96" y2="34" stroke="#D6ECFF" stroke-width="8" stroke-linecap="round"/>
+      <line x1="106" y1="34" x2="164" y2="34" stroke="#D6ECFF" stroke-width="8" stroke-linecap="round"/>
+    </g>
+  </g>
+  <g id="mission" transform="translate(0 210)">
+    <rect width="860" height="220" fill="#EAF6FF"/>
+    <line x1="28" y1="0" x2="28" y2="220" stroke="#D6ECFF"/>
+    <line x1="832" y1="0" x2="832" y2="220" stroke="#D6ECFF"/>
+    <text x="60" y="48" fill="#0B132B" font-family="Inter, 'Noto Sans SC', 'Microsoft YaHei', sans-serif" font-size="28" font-weight="750">最近在做</text>
+    <text x="800" y="46" fill="#345B7C" opacity="0.62" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="11" text-anchor="end">CURRENT MISSION</text>
+    <g>
+      <rect x="60" y="76" width="350" height="112" rx="8" fill="#F7FBFF" stroke="#D6ECFF"/>
+      <rect x="78" y="96" width="64" height="7" rx="3.5" fill="#5DA8E8"/>
+      <text x="78" y="130" fill="#0B132B" font-family="Inter, 'Noto Sans SC', 'Microsoft YaHei', sans-serif" font-size="19" font-weight="700">AI</text>
+      <g transform="translate(86 154)">
+        <circle cx="0" cy="0" r="4" fill="#5DA8E8"/>
+        <text x="16" y="5" fill="#345B7C" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="13">LLM</text>
+      </g>
+      <g transform="translate(178 154)">
+        <circle cx="0" cy="0" r="4" fill="#5DA8E8"/>
+        <text x="16" y="5" fill="#345B7C" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="13">Agent</text>
+      </g>
+      <g transform="translate(270 154)">
+        <circle cx="0" cy="0" r="4" fill="#5DA8E8"/>
+        <text x="16" y="5" fill="#345B7C" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="13">Transformer</text>
+      </g>
+    </g>
+    <g>
+      <rect x="450" y="76" width="350" height="112" rx="8" fill="#F7FBFF" stroke="#D6ECFF"/>
+      <rect x="468" y="96" width="64" height="7" rx="3.5" fill="#5FBF9F"/>
+      <text x="468" y="130" fill="#0B132B" font-family="Inter, 'Noto Sans SC', 'Microsoft YaHei', sans-serif" font-size="19" font-weight="700">Engineering</text>
+      <g transform="translate(476 154)">
+        <circle cx="0" cy="0" r="4" fill="#5FBF9F"/>
+        <text x="16" y="5" fill="#345B7C" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="13">Frontend</text>
+      </g>
+      <g transform="translate(568 154)">
+        <circle cx="0" cy="0" r="4" fill="#5FBF9F"/>
+        <text x="16" y="5" fill="#345B7C" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="13">Tooling</text>
+      </g>
+    </g>
+  </g>
+  <g id="timeline" transform="translate(0 430)">
+    <rect width="860" height="190" fill="#F7FBFF"/>
+    <line x1="28" y1="0" x2="28" y2="190" stroke="#D6ECFF"/>
+    <line x1="832" y1="0" x2="832" y2="190" stroke="#D6ECFF"/>
+    <text x="60" y="46" fill="#0B132B" font-family="Inter, 'Noto Sans SC', 'Microsoft YaHei', sans-serif" font-size="28" font-weight="750">成长路径</text>
+    <text x="800" y="44" fill="#345B7C" opacity="0.62" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="11" text-anchor="end">DEVELOPER JOURNEY</text>
+    <line x1="150" y1="132" x2="710" y2="132" stroke="#D6ECFF" stroke-width="3" stroke-linecap="round"/>
+    <g>
+      <rect x="124" y="88" width="52" height="22" rx="11" fill="#F7FBFF" stroke="#D6ECFF"/>
+      <text x="150" y="103" fill="#345B7C" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="11" text-anchor="middle">2025</text>
+      <circle cx="150" cy="132" r="9" fill="#5FBF9F"/>
+      <circle cx="150" cy="132" r="3" fill="#EAF6FF"/>
+      <text x="150" y="164" fill="#0B132B" font-family="Inter, 'Noto Sans SC', 'Microsoft YaHei', sans-serif" font-size="16" font-weight="700" text-anchor="middle">Frontend</text>
+    </g>
+    <g>
+      <rect x="404" y="88" width="52" height="22" rx="11" fill="#F7FBFF" stroke="#D6ECFF"/>
+      <text x="430" y="103" fill="#345B7C" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="11" text-anchor="middle">2026</text>
+      <circle cx="430" cy="132" r="9" fill="#5DA8E8"/>
+      <circle cx="430" cy="132" r="3" fill="#EAF6FF"/>
+      <text x="430" y="164" fill="#0B132B" font-family="Inter, 'Noto Sans SC', 'Microsoft YaHei', sans-serif" font-size="16" font-weight="700" text-anchor="middle">AI + LLM</text>
+    </g>
+    <g>
+      <rect x="684" y="88" width="52" height="22" rx="11" fill="#F7FBFF" stroke="#D6ECFF"/>
+      <text x="710" y="103" fill="#345B7C" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="11" text-anchor="middle">Future</text>
+      <circle cx="710" cy="132" r="9" fill="#E0B84D"/>
+      <circle cx="710" cy="132" r="3" fill="#EAF6FF"/>
+      <text x="710" y="164" fill="#0B132B" font-family="Inter, 'Noto Sans SC', 'Microsoft YaHei', sans-serif" font-size="16" font-weight="700" text-anchor="middle">Agent / Robotics</text>
+    </g>
+  </g>
+  <g id="radar" transform="translate(0 620)">
+    <rect width="860" height="300" fill="#F7FBFF"/>
+    <line x1="28" y1="0" x2="28" y2="300" stroke="#D6ECFF"/>
+    <line x1="832" y1="0" x2="832" y2="300" stroke="#D6ECFF"/>
+    <text x="60" y="48" fill="#0B132B" font-family="Inter, 'Noto Sans SC', 'Microsoft YaHei', sans-serif" font-size="28" font-weight="750">小窝雷达</text>
+    <text x="800" y="46" fill="#345B7C" opacity="0.62" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="11" text-anchor="end">STATIC SNAPSHOT</text>
+    <g>
+      <line x1="60" y1="84" x2="202" y2="84" stroke="#D6ECFF" stroke-width="3"/>
+      <circle cx="65" cy="84" r="5" fill="#E0B84D"/>
+      <text x="60" y="122" fill="#0B132B" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="26" font-weight="700">20</text>
+      <text x="112" y="120" fill="#345B7C" font-family="Inter, 'Noto Sans SC', 'Microsoft YaHei', sans-serif" font-size="14">Stars</text>
+    </g>
+    <g>
+      <line x1="250" y1="84" x2="392" y2="84" stroke="#D6ECFF" stroke-width="3"/>
+      <circle cx="255" cy="84" r="5" fill="#5FBF9F"/>
+      <text x="250" y="122" fill="#0B132B" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="26" font-weight="700">12</text>
+      <text x="302" y="120" fill="#345B7C" font-family="Inter, 'Noto Sans SC', 'Microsoft YaHei', sans-serif" font-size="14">Repositories</text>
+    </g>
+    <g>
+      <line x1="440" y1="84" x2="582" y2="84" stroke="#D6ECFF" stroke-width="3"/>
+      <circle cx="445" cy="84" r="5" fill="#5DA8E8"/>
+      <text x="440" y="122" fill="#0B132B" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="26" font-weight="700">82</text>
+      <text x="492" y="120" fill="#345B7C" font-family="Inter, 'Noto Sans SC', 'Microsoft YaHei', sans-serif" font-size="14">Commits</text>
+    </g>
+    <g>
+      <line x1="630" y1="84" x2="772" y2="84" stroke="#D6ECFF" stroke-width="3"/>
+      <circle cx="635" cy="84" r="5" fill="#5DA8E8"/>
+      <text x="630" y="122" fill="#0B132B" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="26" font-weight="700">158</text>
+      <text x="682" y="120" fill="#345B7C" font-family="Inter, 'Noto Sans SC', 'Microsoft YaHei', sans-serif" font-size="14">Contributions</text>
+    </g>
+    <g transform="translate(430 212)">
+      <circle r="72" stroke="#D6ECFF" stroke-width="1.5"/>
+      <circle r="48" stroke="#D6ECFF" stroke-width="1.5" stroke-dasharray="4 7"/>
+      <circle r="24" stroke="#D6ECFF" stroke-width="1.5"/>
+      <line x1="-180" y1="0" x2="180" y2="0" stroke="#D6ECFF"/>
+      <line x1="0" y1="-72" x2="0" y2="72" stroke="#D6ECFF"/>
+      <path d="M0 0L60 -38A71 71 0 0 1 71 5Z" fill="#5DA8E8" opacity="0.16"/>
+      <line x1="0" y1="0" x2="60" y2="-38" stroke="#5DA8E8" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="-36" cy="22" r="5" fill="#5FBF9F"/>
+      <circle cx="25" cy="-30" r="5" fill="#E0B84D"/>
+      <circle cx="52" cy="34" r="4" fill="#5DA8E8"/>
+      <circle r="7" fill="#0B132B"/>
+      <circle r="3" fill="#EAF6FF"/>
+    </g>
+  </g>
+  <g id="skills" transform="translate(0 920)">
+    <rect width="860" height="260" fill="#EAF6FF"/>
+    <line x1="28" y1="0" x2="28" y2="260" stroke="#D6ECFF"/>
+    <line x1="832" y1="0" x2="832" y2="260" stroke="#D6ECFF"/>
+    <text x="60" y="42" fill="#0B132B" font-family="Inter, 'Noto Sans SC', 'Microsoft YaHei', sans-serif" font-size="28" font-weight="750">知识树</text>
+    <text x="800" y="40" fill="#345B7C" opacity="0.62" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="11" text-anchor="end">KNOWLEDGE TREE</text>
+    <g>
+      <rect x="60" y="68" width="150" height="34" fill="#5DA8E8"/>
+      <text x="76" y="91" fill="#0B132B" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="14" font-weight="700">AI</text>
+      <line x1="80" y1="102" x2="80" y2="205" stroke="#D6ECFF"/>
+      <g>
+        <line x1="80" y1="121" x2="102" y2="121" stroke="#D6ECFF"/>
+        <circle cx="106" cy="121" r="3.5" fill="#5DA8E8"/>
+        <text x="120" y="126" fill="#345B7C" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="13">Machine Learning</text>
+      </g>
+      <g>
+        <line x1="80" y1="149" x2="102" y2="149" stroke="#D6ECFF"/>
+        <circle cx="106" cy="149" r="3.5" fill="#5DA8E8"/>
+        <text x="120" y="154" fill="#345B7C" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="13">Deep Learning</text>
+      </g>
+      <g>
+        <line x1="80" y1="177" x2="102" y2="177" stroke="#D6ECFF"/>
+        <circle cx="106" cy="177" r="3.5" fill="#5DA8E8"/>
+        <text x="120" y="182" fill="#345B7C" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="13">Transformer</text>
+      </g>
+      <g>
+        <line x1="80" y1="205" x2="102" y2="205" stroke="#D6ECFF"/>
+        <circle cx="106" cy="205" r="3.5" fill="#5DA8E8"/>
+        <text x="120" y="210" fill="#345B7C" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="13">Agent</text>
+      </g>
+    </g>
+    <g>
+      <rect x="450" y="68" width="150" height="34" fill="#5FBF9F"/>
+      <text x="466" y="91" fill="#0B132B" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="14" font-weight="700">Engineering</text>
+      <line x1="470" y1="102" x2="470" y2="177" stroke="#D6ECFF"/>
+      <g>
+        <line x1="470" y1="121" x2="492" y2="121" stroke="#D6ECFF"/>
+        <circle cx="496" cy="121" r="3.5" fill="#5FBF9F"/>
+        <text x="510" y="126" fill="#345B7C" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="13">Frontend</text>
+      </g>
+      <g>
+        <line x1="470" y1="149" x2="492" y2="149" stroke="#D6ECFF"/>
+        <circle cx="496" cy="149" r="3.5" fill="#5FBF9F"/>
+        <text x="510" y="154" fill="#345B7C" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="13">Git</text>
+      </g>
+      <g>
+        <line x1="470" y1="177" x2="492" y2="177" stroke="#D6ECFF"/>
+        <circle cx="496" cy="177" r="3.5" fill="#5FBF9F"/>
+        <text x="510" y="182" fill="#345B7C" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="13">System</text>
+      </g>
+    </g>
+  </g>
+  <g id="projects" transform="translate(0 1180)">
+    <rect width="860" height="250" fill="#F7FBFF"/>
+    <line x1="28" y1="0" x2="28" y2="250" stroke="#D6ECFF"/>
+    <line x1="832" y1="0" x2="832" y2="250" stroke="#D6ECFF"/>
+    <text x="60" y="44" fill="#0B132B" font-family="Inter, 'Noto Sans SC', 'Microsoft YaHei', sans-serif" font-size="28" font-weight="750">项目抽屉</text>
+    <text x="800" y="42" fill="#345B7C" opacity="0.62" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="11" text-anchor="end">PROJECT NOTES</text>
+    <g>
+      <rect x="60" y="76" width="220" height="136" rx="8" fill="#F7FBFF" stroke="#D6ECFF"/>
+      <line x1="78" y1="96" x2="262" y2="96" stroke="#5DA8E8" stroke-width="4" stroke-linecap="round"/>
+      <text x="78" y="130" fill="#0B132B" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="14" font-weight="700">my-agent</text>
+      <text x="78" y="166" fill="#345B7C" font-family="Inter, 'Noto Sans SC', 'Microsoft YaHei', sans-serif" font-size="13">从零写 LLM Agent 的小实践</text>
+      <text x="78" y="194" fill="#345B7C" opacity="0.6" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="10">LLM · Agent</text>
+    </g>
+    <g>
+      <rect x="310" y="76" width="220" height="136" rx="8" fill="#F7FBFF" stroke="#D6ECFF"/>
+      <line x1="328" y1="96" x2="512" y2="96" stroke="#E0B84D" stroke-width="4" stroke-linecap="round"/>
+      <text x="328" y="130" fill="#0B132B" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="14" font-weight="700">transformer-explainer-cn</text>
+      <text x="328" y="166" fill="#345B7C" font-family="Inter, 'Noto Sans SC', 'Microsoft YaHei', sans-serif" font-size="13">Transformer 可视化解释器汉化</text>
+      <text x="328" y="194" fill="#345B7C" opacity="0.6" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="10">Transformer · Education</text>
+    </g>
+    <g>
+      <rect x="560" y="76" width="220" height="136" rx="8" fill="#F7FBFF" stroke="#D6ECFF"/>
+      <line x1="578" y1="96" x2="762" y2="96" stroke="#5FBF9F" stroke-width="4" stroke-linecap="round"/>
+      <text x="578" y="130" fill="#0B132B" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="14" font-weight="700">grape-robot</text>
+      <text x="578" y="166" fill="#345B7C" font-family="Inter, 'Noto Sans SC', 'Microsoft YaHei', sans-serif" font-size="13">机器人视觉与采摘方向练习</text>
+      <text x="578" y="194" fill="#345B7C" opacity="0.6" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="10">Vision · Robotics</text>
+    </g>
+  </g>
+  <g id="footer" transform="translate(0 1430)">
+    <path d="M0 0H860V64Q860 86 838 86H22Q0 86 0 64Z" fill="#D6ECFF"/>
+    <rect x="28" y="0" width="804" height="58" fill="#EAF6FF" stroke="#D6ECFF"/>
+    <text x="60" y="40" fill="#0B132B" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="14" font-weight="700">Jian1202</text>
+    <line x1="154" y1="36" x2="560" y2="36" stroke="#D6ECFF" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="590" cy="36" r="5" fill="#5DA8E8"/>
+    <circle cx="612" cy="36" r="5" fill="#5FBF9F"/>
+    <circle cx="634" cy="36" r="5" fill="#E0B84D"/>
+    <text x="800" y="40" fill="#345B7C" opacity="0.75" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', monospace" font-size="11" text-anchor="end">Curiosity, the power to change.</text>
+  </g>
+</svg>
