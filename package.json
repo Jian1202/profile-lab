@@ -1,0 +1,22 @@
+{
+  "name": "profile-lab",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A config-driven SVG profile builder.",
+  "license": "MIT",
+  "bin": {
+    "profile-lab": "./bin/profile-lab.js"
+  },
+  "scripts": {
+    "generate:example": "node bin/profile-lab.js generate --config examples/jian1202/profile.yaml --output examples/jian1202/assets/profile.svg",
+    "validate:example": "node bin/profile-lab.js validate --config examples/jian1202/profile.yaml",
+    "preview:example": "node bin/profile-lab.js preview --config examples/jian1202/profile.yaml --output examples/jian1202/assets/profile.svg --port 4173",
+    "test": "node --test tests/*.test.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "yaml": "^2.6.1"
+  }
+}
