@@ -1,0 +1,57 @@
+page:
+  title: Developer Profile
+  subtitle: Software / Systems / Learning
+  description: A minimal Profile Lab example.
+
+theme:
+  preset: light-blue
+
+sections:
+  - id: header
+    type: header
+    enabled: true
+    variant: default
+    data:
+      title: Developer Profile
+      greeting: Welcome to my workspace
+      subtitle: Software / Systems / Learning
+
+  - id: mission
+    type: mission
+    enabled: true
+    variant: cards
+    data:
+      title: Current Focus
+      eyebrow: CURRENT FOCUS
+      tracks:
+        - name: Build
+          items: [Project A, Tooling]
+          color: blue
+        - name: Learn
+          items: [Systems, Design]
+          color: green
+
+  - id: projects
+    type: projects
+    enabled: true
+    variant: drawer
+    data:
+      title: Projects
+      eyebrow: PROJECT NOTES
+      entries:
+        - name: project-a
+          description: A small example project
+          tags: [Example, JavaScript]
+          color: blue
+        - name: project-b
+          description: Another example project
+          tags: [Learning, Tools]
+          color: green
+
+  - id: footer
+    type: footer
+    enabled: true
+    variant: default
+    data:
+      handle: developer
+      slogan: Keep building, keep learning.
