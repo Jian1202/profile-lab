@@ -54,6 +54,7 @@ test('多行超限时在最后一行添加省略号', () => {
   assert.equal(result.truncated, true);
   assert.equal(result.lines.length, 2);
   assert.match(result.lines[1], /…$/u);
+  assert.doesNotMatch(result.lines[1], /x…$/u);
   result.lines.forEach((line) => assert.ok(estimateTextWidth(line, base) <= 70));
 });
 

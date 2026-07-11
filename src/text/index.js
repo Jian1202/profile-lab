@@ -160,7 +160,7 @@ function wrapText(value, options) {
   if (lines.length <= maxLines) return { lines, truncated: false };
 
   const visible = lines.slice(0, maxLines);
-  visible[maxLines - 1] = fitWithEllipsis(`${visible[maxLines - 1]}x`, options);
+  visible[maxLines - 1] = fitWithEllipsis(visible[maxLines - 1], options);
   return { lines: visible, truncated: true };
 }
 
