@@ -1,0 +1,128 @@
+# 来源仓库：Jian1202/Jian1202
+# 来源提交：df44e6d4cea54906c37b4182dbcfc886807f7745
+# 复制日期：2026-07-11
+# 原生成器版本：Profile Lab v0.1.0
+# 仅用于真实个人主页布局回归，不是推荐示例。
+
+page:
+  title: 渡的小窝
+  subtitle: AI / Frontend / Transformer
+  description: 个人小窝，包含当前方向、成长路径、GitHub 雷达、知识树和一些小项目。
+
+theme:
+  preset: light-blue
+
+sections:
+  - id: header
+    type: header
+    enabled: true
+    variant: default
+    data:
+      title: 渡的小窝 
+      greeting: 哈喽呀，这里是渡的小窝哦 ~ ^o^ ~
+      subtitle: AI / Frontend / Thinking
+
+  - id: mission
+    type: mission
+    enabled: true
+    variant: cards
+    data:
+      title: 最近在做啥？🤔
+      eyebrow: CURRENT MISSION
+      tracks:
+        - name: 持续学习AI相关知识~
+          items: [Transformer,LLM,Agent]
+          color: blue
+        - name: 学一些工程知识~
+          items: [Frontend,AI Coding,CV]
+          color: green
+
+  - id: timeline
+    type: timeline
+    enabled: true
+    variant: horizontal
+    data:
+      title: 🚗会开往哪里呢？
+      eyebrow: DEVELOPER JOURNEY
+      entries:
+        - year: "2025"
+          focus: Frontend
+          color: green
+        - year: "2026"
+          focus: AI / Agent / Engineering
+          color: blue
+        - year: Future
+          focus: Thinking……
+          color: gold
+
+  - id: radar
+    type: radar
+    enabled: true
+    variant: default
+    data:
+      title: 🔎雷达探测中！
+      eyebrow: STATIC SNAPSHOT
+      stats:
+        - label: Stars
+          value: 20
+          color: gold
+        - label: Repositories
+          value: 12
+          color: green
+        - label: Commits
+          value: 82
+          color: blue
+        - label: Contributions
+          value: 158
+          color: blue
+      languages:
+        - name: Python
+          percent: 67
+        - name: JavaScript
+          percent: 19
+        - name: TypeScript
+          percent: 14
+
+  - id: skills
+    type: skills
+    enabled: true
+    variant: tree
+    data:
+      title: 🌱待发芽的技能树~
+      eyebrow: SKILL TREE
+      trees:
+        - name: AI
+          items: [Machine Learning, Deep Learning, Transformer, Agent, ……]
+          color: blue
+        - name: Engineering
+          items: [Frontend, AI Coding, CV, ……]
+          color: green
+
+  - id: projects
+    type: projects
+    enabled: true
+    variant: drawer
+    data:
+      title: (*￣3￣)╭一些小玩意
+      eyebrow: PROJECT NOTES
+      entries:
+        - name: my-agent
+          description: 从零写 LLM Agent 的小实践
+          tags: [LLM, Agent]
+          color: blue
+        - name: transformer-explainer-cn
+          description: Transformer 可视化解释器汉化
+          tags: [Transformer, Education, Visualization]
+          color: gold
+        - name: grape-robot
+          description: 小机器人视觉与采摘方向实践
+          tags: [CV, Robotics, Practice]
+          color: green
+
+  - id: footer
+    type: footer
+    enabled: true
+    variant: default
+    data:
+      handle: Jian1202
+      slogan: 好奇之心，改变之力.
