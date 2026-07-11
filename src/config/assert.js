@@ -20,9 +20,17 @@ function keys(value, path, expected) {
   }
 }
 
-function string(value, path) {
+function string(value, path, { minLength = 1, maxLength = Number.POSITIVE_INFINITY } = {}) {
   if (typeof value !== 'string' || !value.trim()) {
     fail(path, 'must be a non-empty string.');
+  }
+
+  const length = Array.from(value).length;
+  if (length < minLength || length > maxLength) {
+    const range = Number.isFinite(maxLength)
+      ? `between ${minLength} and ${maxLength}`
+      : `at least ${minLength}`;
+    fail(path, `must contain ${range} characters, received ${length}.`);
   }
 }
 
@@ -34,12 +42,22 @@ function boolean(value, path) {
 
 function number(value, path, { min = 0, max = Number.POSITIVE_INFINITY } = {}) {
   if (!Number.isFinite(value) || value < min || value > max) {
-    fail(path, `must be a number between ${min} and ${max}.`);
+    const range = Number.isFinite(max) ? `between ${min} and ${max}` : `at least ${min}`;
+    fail(path, `must be a finite number ${range}, received ${value}.`);
   }
 }
 
-function list(value, path) {
-  if (!Array.isArray(value) || !value.length) {
+function list(value, path, { minItems = 1, maxItems = Number.POSITIVE_INFINITY } = {}) {
+  if (!Array.isArray(value)) {
+    fail(path, 'must be an array.');
+  }
+  if (value.length < minItems || value.length > maxItems) {
+    const range = Number.isFinite(maxItems)
+      ? `between ${minItems} and ${maxItems}`
+      : `at least ${minItems}`;
+    fail(path, `must contain ${range} items, received ${value.length}.`);
+  }
+  if (!value.length) {
     fail(path, 'must be a non-empty array.');
   }
 }
