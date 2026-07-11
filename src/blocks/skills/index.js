@@ -1,6 +1,18 @@
 const { circle, group, line, rect, text } = require('../../utils/svg');
 const { truncateText } = require('../../text');
 
+const skillTreeLayout = {
+  startY: 126,
+  gap: 28,
+  bottomPadding: 18,
+};
+
+function shouldUseSkillColumns(itemCount, { startY, gap, height, bottomPadding }) {
+  const singleColumnLastY = startY + (itemCount - 1) * gap;
+  const availableBottom = height - bottomPadding;
+  return singleColumnLastY > availableBottom;
+}
+
 function measure(_section, { layout }) {
   return { height: layout.blockHeights.skills };
 }
@@ -13,9 +25,13 @@ function render(section, { theme, layout, offsetY, height }) {
   const branches = data.trees.map((tree, index) => {
     const x = positions[index];
     const accent = colors[tree.color];
-    const startY = 126;
-    const gap = 28;
-    const compact = tree.items.length > 4;
+    const { startY, gap, bottomPadding } = skillTreeLayout;
+    const compact = shouldUseSkillColumns(tree.items.length, {
+      startY,
+      gap,
+      height,
+      bottomPadding,
+    });
     const items = tree.items.map((item, itemIndex) => {
       const column = compact && itemIndex >= 3 ? 1 : 0;
       const row = compact ? itemIndex % 3 : itemIndex;
@@ -59,4 +75,4 @@ function render(section, { theme, layout, offsetY, height }) {
   ], { id: 'skills', transform: `translate(0 ${offsetY})` });
 }
 
-module.exports = { measure, render };
+module.exports = { measure, render, shouldUseSkillColumns };

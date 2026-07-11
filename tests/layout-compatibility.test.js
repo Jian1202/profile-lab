@@ -5,6 +5,7 @@ const path = require('node:path');
 const test = require('node:test');
 const { loadConfig } = require('../src/config/load-config');
 const { layoutMissionItems } = require('../src/blocks/mission');
+const { shouldUseSkillColumns } = require('../src/blocks/skills');
 
 const fixtureDirectory = path.join(__dirname, 'fixtures');
 const configPath = path.join(fixtureDirectory, 'jian1202-regression.yaml');
@@ -44,4 +45,13 @@ test('Mission 流式布局优先保留完整文本并限制为两行', () => {
   const long = layoutMissionItems(['X'.repeat(80)], options);
   assert.equal(long[0].truncated, true);
   assert.match(long[0].text, /…$/u);
+});
+
+test('Skills 根据实际垂直空间决定单列或双列', () => {
+  const options = { startY: 126, gap: 28, height: 260, bottomPadding: 18 };
+
+  assert.equal(shouldUseSkillColumns(4, options), false);
+  assert.equal(shouldUseSkillColumns(5, options), false);
+  assert.equal(shouldUseSkillColumns(6, options), true);
+  assert.equal(shouldUseSkillColumns(5, { ...options, height: 220 }), true);
 });
