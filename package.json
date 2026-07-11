@@ -1,6 +1,6 @@
 {
   "name": "profile-lab",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "description": "A config-driven SVG profile builder.",
   "license": "MIT",
@@ -18,5 +18,8 @@
   },
   "dependencies": {
     "yaml": "^2.6.1"
+  },
+  "devDependencies": {
+    "saxes": "^6.0.0"
   }
 }

@@ -1,4 +1,5 @@
 const { circle, group, line, path, rect, text } = require('../../utils/svg');
+const { truncateText } = require('../../text');
 
 function measure(_section, { layout }) {
   return { height: layout.blockHeights.radar };
@@ -12,12 +13,14 @@ function render(section, { theme, layout, offsetY, height }) {
   const readings = data.stats.map((metric, index) => {
     const x = positions[index];
     const accent = colors[metric.color];
+    const value = truncateText(metric.value, { maxWidth: 52, fontSize: 26, fontWeight: 700, family: fonts.mono }).text;
+    const label = truncateText(metric.label, { maxWidth: 118, fontSize: 14, family: fonts.display }).text;
 
     return group([
       line({ x1: x, y1: 84, x2: x + 142, y2: 84, stroke: colors.border, 'stroke-width': 3 }),
       circle({ cx: x + 5, cy: 84, r: 5, fill: accent }),
-      text(metric.value, { x, y: 122, fill: colors.primary, 'font-family': fonts.mono, 'font-size': 26, 'font-weight': 700 }),
-      text(metric.label, { x: x + 52, y: 120, fill: colors.text, 'font-family': fonts.display, 'font-size': 14 }),
+      text(value, { x, y: 122, fill: colors.primary, 'font-family': fonts.mono, 'font-size': 26, 'font-weight': 700 }),
+      text(label, { x: x + 52, y: 120, fill: colors.text, 'font-family': fonts.display, 'font-size': 14 }),
     ]);
   });
 
@@ -25,8 +28,8 @@ function render(section, { theme, layout, offsetY, height }) {
     rect({ width, height, fill: colors.background }),
     line({ x1: gutter, y1: 0, x2: gutter, y2: height, stroke: colors.border }),
     line({ x1: width - gutter, y1: 0, x2: width - gutter, y2: height, stroke: colors.border }),
-    text(data.title, { x: 60, y: 48, fill: colors.primary, 'font-family': fonts.display, 'font-size': 28, 'font-weight': 750 }),
-    text(data.eyebrow, { x: 800, y: 46, fill: colors.text, opacity: 0.62, 'font-family': fonts.mono, 'font-size': 11, 'text-anchor': 'end' }),
+    text(truncateText(data.title, { maxWidth: 520, fontSize: 28, fontWeight: 750, family: fonts.display }).text, { x: 60, y: 48, fill: colors.primary, 'font-family': fonts.display, 'font-size': 28, 'font-weight': 750 }),
+    text(truncateText(data.eyebrow, { maxWidth: 190, fontSize: 11, family: fonts.mono }).text, { x: 800, y: 46, fill: colors.text, opacity: 0.62, 'font-family': fonts.mono, 'font-size': 11, 'text-anchor': 'end' }),
     readings,
     group([
       circle({ r: 72, stroke: colors.border, 'stroke-width': 1.5 }),

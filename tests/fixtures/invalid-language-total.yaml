@@ -1,0 +1,21 @@
+page:
+  title: Invalid Language Total
+  subtitle: Test fixture
+  description: Language percentages do not sum to one hundred.
+
+theme:
+  preset: light-blue
+
+sections:
+  - id: radar
+    type: radar
+    enabled: true
+    variant: default
+    data:
+      title: Radar
+      eyebrow: INVALID TOTAL
+      stats:
+        - { label: Stars, value: 10, color: gold }
+      languages:
+        - { name: Python, percent: 70 }
+        - { name: JavaScript, percent: 20 }

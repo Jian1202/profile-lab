@@ -1,0 +1,132 @@
+page:
+  title: 极端内容渲染测试 🚀 AI Lab
+  subtitle: 中文 English Emoji 🚀 XML & layout safety
+  description: 用于验证接近容量上限的中英文、Emoji、XML 特殊字符、长单词和有限列表布局。
+
+theme:
+  preset: light-blue
+
+sections:
+  - id: header
+    type: header
+    enabled: true
+    variant: default
+    data:
+      title: 超长中文标题与 AI 🚀 实验室
+      greeting: DeterministicProfileRenderingWithoutBrowserDependencies
+      subtitle: 'AI & LLM <Agent> "Test" 🚀 Frontend / Transformer'
+
+  - id: mission
+    type: mission
+    enabled: true
+    variant: cards
+    data:
+      title: 最近在做的可靠性实验
+      eyebrow: RENDERING HARDENING
+      tracks:
+        - name: 人工智能与智能体方向
+          items: [LLM, Agent, Transformer, 超长中文条目测试, DeterministicLayout, 🚀 Emoji]
+          color: blue
+        - name: Engineering Reliability
+          items: [Frontend, Tooling, XML & SVG, Unicode, LongWordWithoutBreak, 稳定输出]
+          color: green
+
+  - id: timeline
+    type: timeline
+    enabled: true
+    variant: horizontal
+    data:
+      title: 成长路径与未来探索
+      eyebrow: DEVELOPER JOURNEY
+      entries:
+        - year: '2024 & Earlier'
+          focus: Frontend Engineering and Design Systems
+          color: green
+        - year: '2025'
+          focus: 中文机器学习与深度学习基础
+          color: blue
+        - year: '2026 🚀'
+          focus: Transformer Agent and Reliable Tooling
+          color: gold
+        - year: Future
+          focus: Supercalifragilisticexpialidocious
+          color: blue
+        - year: Next
+          focus: 'Robotics <Vision> & Embodied AI 🚀'
+          color: green
+
+  - id: radar
+    type: radar
+    enabled: true
+    variant: default
+    data:
+      title: 静态指标可靠性雷达
+      eyebrow: STATIC SNAPSHOT
+      stats:
+        - label: Stars & Likes 🚀
+          value: 999
+          color: gold
+        - label: Repositories
+          value: 88.8
+          color: green
+        - label: 中文提交统计
+          value: 512
+          color: blue
+        - label: Contributions
+          value: 365
+          color: blue
+      languages:
+        - name: Python & AI
+          percent: 20
+        - name: JavaScript
+          percent: 20
+        - name: TypeScript
+          percent: 20
+        - name: 中文语言项 🚀
+          percent: 20
+        - name: C++
+          percent: 20
+
+  - id: skills
+    type: skills
+    enabled: true
+    variant: tree
+    data:
+      title: 知识树与工程地图
+      eyebrow: KNOWLEDGE TREE
+      trees:
+        - name: 人工智能 🚀
+          items: [Machine Learning, Deep Learning, Transformer, Agent, 超长中文技能条目测试, XML & Unicode]
+          color: blue
+        - name: Engineering Reliability
+          items: [Frontend, Git, System, DeterministicOutput, LongWordWithoutBreak, 工具链与自动化]
+          color: green
+
+  - id: projects
+    type: projects
+    enabled: true
+    variant: drawer
+    data:
+      title: 项目抽屉与实验记录
+      eyebrow: PROJECT NOTES
+      entries:
+        - name: deterministic-profile-rendering-lab
+          description: 这是一个很长的中文项目描述，用于验证项目卡片能够稳定换行并在有限空间内正确结束。
+          tags: [Rendering, Unicode 🚀, XML & SVG, Reliability]
+          color: blue
+        - name: SuperLongEnglishProjectNameForLayout
+          description: Supercalifragilisticexpialidocious validates safe word splitting without browser metrics.
+          tags: [LongWordWithoutBreak, JavaScript, Testing, Tooling]
+          color: gold
+        - name: AI & Agent <Lab> 🚀
+          description: 中英混合 AI Agent 与 Frontend 工具实验，包含 &、<、>、双引号和 Emoji。
+          tags: [AI & LLM, Agent, Frontend, 🚀]
+          color: green
+
+  - id: footer
+    type: footer
+    enabled: true
+    variant: default
+    data:
+      handle: Jian1202 & ProfileLab 🚀
+      slogan: Curiosity and deterministic rendering make every generated profile safer 🚀

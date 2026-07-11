@@ -1,9 +1,12 @@
 const { boolean, fail, keys, list, object, string } = require('./assert');
+const limits = require('./limits');
 
 function validateProfileConfig(config, registry) {
   keys(config, 'config', ['page', 'sections', 'theme']);
   keys(config.page, 'page', ['description', 'subtitle', 'title']);
-  Object.entries(config.page).forEach(([key, value]) => string(value, `page.${key}`));
+  string(config.page.title, 'page.title', { maxLength: limits.page.title });
+  string(config.page.subtitle, 'page.subtitle', { maxLength: limits.page.subtitle });
+  string(config.page.description, 'page.description', { maxLength: limits.page.description });
   keys(config.theme, 'theme', ['preset']);
   string(config.theme.preset, 'theme.preset');
   list(config.sections, 'sections');
