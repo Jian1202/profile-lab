@@ -2,11 +2,17 @@ function escapeText(value) {
   return String(value)
     .replaceAll('&', '&amp;')
     .replaceAll('<', '&lt;')
-    .replaceAll('>', '&gt;');
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&apos;');
 }
 
 function escapeAttribute(value) {
-  return escapeText(value).replaceAll('"', '&quot;');
+  return String(value)
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;');
 }
 
 function renderAttributes(attributes = {}) {
@@ -92,4 +98,17 @@ function svgDocument({ width, height, title: documentTitle, description: documen
   ].join('\n');
 }
 
-module.exports = { circle, description, element, group, line, path, rect, svgDocument, text, title };
+module.exports = {
+  circle,
+  description,
+  element,
+  escapeAttribute,
+  escapeText,
+  group,
+  line,
+  path,
+  rect,
+  svgDocument,
+  text,
+  title,
+};
