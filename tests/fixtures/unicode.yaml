@@ -1,0 +1,25 @@
+page:
+  title: 'AI & LLM <Agent> "Test" 🚀'
+  subtitle: 中文 English Emoji 👩‍💻
+  description: 'XML characters: & < > " and apostrophe'
+
+theme:
+  preset: light-blue
+
+sections:
+  - id: header
+    type: header
+    enabled: true
+    variant: default
+    data:
+      title: 中文 🚀 Profile
+      greeting: 'AI & LLM <Agent> "Test"'
+      subtitle: Unicode 👩‍💻 and XML & safety
+
+  - id: footer
+    type: footer
+    enabled: true
+    variant: default
+    data:
+      handle: 'Jian & Lab 🚀'
+      slogan: 'Safe <SVG> with "quotes" & apostrophe'

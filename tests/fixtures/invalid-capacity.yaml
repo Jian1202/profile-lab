@@ -1,0 +1,48 @@
+page:
+  title: Invalid Capacity
+  subtitle: Test fixture
+  description: Intentionally exceeds multiple block limits.
+
+theme:
+  preset: light-blue
+
+sections:
+  - id: mission
+    type: mission
+    enabled: true
+    variant: cards
+    data:
+      title: Mission
+      eyebrow: INVALID
+      tracks:
+        - name: Too many items
+          items: [One, Two, Three, Four, Five, Six, Seven]
+          color: blue
+
+  - id: timeline
+    type: timeline
+    enabled: true
+    variant: horizontal
+    data:
+      title: Timeline
+      eyebrow: INVALID
+      entries:
+        - { year: A, focus: A, color: blue }
+        - { year: B, focus: B, color: blue }
+        - { year: C, focus: C, color: blue }
+        - { year: D, focus: D, color: blue }
+        - { year: E, focus: E, color: blue }
+        - { year: F, focus: F, color: blue }
+
+  - id: projects
+    type: projects
+    enabled: true
+    variant: drawer
+    data:
+      title: Projects
+      eyebrow: INVALID
+      entries:
+        - name: Invalid tags
+          description: Too many tags
+          tags: [One, Two, Three, Four, Five]
+          color: green

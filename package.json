@@ -18,5 +18,8 @@
   },
   "dependencies": {
     "yaml": "^2.6.1"
+  },
+  "devDependencies": {
+    "saxes": "^6.0.0"
   }
 }

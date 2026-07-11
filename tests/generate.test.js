@@ -1,4 +1,5 @@
 const assert = require('node:assert/strict');
+const crypto = require('node:crypto');
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
@@ -17,7 +18,13 @@ test('Jian1202 示例输出与迁移基准逐字节一致', () => {
     const result = generateProfile({ configPath, outputPath });
     assert.equal(result.width, 860);
     assert.equal(result.height, 1516);
-    assert.equal(fs.readFileSync(outputPath, 'utf8'), fs.readFileSync(expectedPath, 'utf8'));
+    const actual = fs.readFileSync(outputPath);
+    const expected = fs.readFileSync(expectedPath);
+    assert.deepEqual(actual, expected);
+    assert.equal(
+      crypto.createHash('sha256').update(actual).digest('hex'),
+      '05cd42f3b09ffdb42ae55c3da67951021165d1dd020aa239d6c8adafe97d2a72',
+    );
   } finally {
     fs.rmSync(directory, { recursive: true, force: true });
   }

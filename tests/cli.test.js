@@ -8,6 +8,7 @@ const test = require('node:test');
 const root = path.resolve(__dirname, '..');
 const cli = path.join(root, 'bin', 'profile-lab.js');
 const config = path.join(root, 'examples', 'minimal', 'profile.yaml');
+const invalidCapacity = path.join(root, 'tests', 'fixtures', 'invalid-capacity.yaml');
 
 function run(args, cwd = root) {
   return spawnSync(process.execPath, [cli, ...args], { cwd, encoding: 'utf8' });
@@ -69,4 +70,12 @@ test('CLI help 展示可用命令', () => {
   assert.match(result.stdout, /generate/);
   assert.match(result.stdout, /validate/);
   assert.match(result.stdout, /preview/);
+});
+
+test('CLI validate 对显示容量错误返回非零退出码和完整路径', () => {
+  const result = run(['validate', '--config', invalidCapacity]);
+
+  assert.notEqual(result.status, 0);
+  assert.match(result.stderr, /sections\[0\] "mission"\.data\.tracks\[0\]\.items/);
+  assert.match(result.stderr, /received 7/);
 });
