@@ -52,12 +52,13 @@ function parseSvg(svg) {
 test('真实个人主页回归基线来源和哈希固定', () => {
   const config = loadConfig(configPath);
   const baseline = fs.readFileSync(baselinePath);
+  const normalized = Buffer.from(baseline.toString('utf8').replaceAll('\r\n', '\n'));
 
   assert.equal(config.sections.length, 7);
-  assert.equal(baseline.length, 17912);
+  assert.equal(normalized.length, 17673);
   assert.equal(
-    crypto.createHash('sha256').update(baseline).digest('hex'),
-    'b4ff9f2268496a5683862b91946dcbcfdd51ae8998b313806c9069c6395f79dc',
+    crypto.createHash('sha256').update(normalized).digest('hex'),
+    'cfe812c419d49e9657a7712f10ce9395af5be34b7e56ece565870f9429514350',
   );
 });
 
