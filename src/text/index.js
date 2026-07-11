@@ -33,7 +33,7 @@ function characterFactor(character, family = '') {
   if (/\p{Mark}/u.test(character) || codePoint === 0x200d || codePoint === 0xfe0f) return 0;
   if (/\s/u.test(character)) return 0.3;
   if (isWideCodePoint(codePoint) || /\p{Extended_Pictographic}/u.test(character)) return 1;
-  if (/monospace|Consolas|Mono/i.test(family)) return 0.62;
+  if (/monospace|Consolas|Mono/i.test(family)) return 0.58;
   if (/\p{Number}/u.test(character)) return 0.58;
   if (/\p{Uppercase_Letter}/u.test(character)) return 0.65;
   if (/\p{Lowercase_Letter}/u.test(character)) return 0.56;
