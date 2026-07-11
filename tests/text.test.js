@@ -33,6 +33,10 @@ test('单行截断保留短文本并安全截断 Unicode', () => {
   assert.match(long.text, /…$/u);
   assert.ok(long.finalWidth <= 90);
   assert.doesNotMatch(long.text, /[\uD800-\uDBFF]$/u);
+
+  const emoji = truncateText('A👩‍💻B', { ...base, maxWidth: 30 });
+  assert.equal(emoji.text, 'A…');
+  assert.doesNotMatch(emoji.text, /\u200d/u);
 });
 
 test('多行换行优先保留英文单词并支持中文和长单词', () => {

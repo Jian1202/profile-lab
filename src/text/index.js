@@ -1,4 +1,9 @@
 const DEFAULT_ELLIPSIS = '…';
+const graphemeSegmenter = new Intl.Segmenter('en', { granularity: 'grapheme' });
+
+function splitGraphemes(value) {
+  return [...graphemeSegmenter.segment(String(value))].map(({ segment }) => segment);
+}
 
 function isWideCodePoint(codePoint) {
   return codePoint >= 0x1100 && (
@@ -42,7 +47,7 @@ function characterFactor(character, family = '') {
 }
 
 function estimateTextWidth(value, { fontSize = 16, fontWeight = 400, family = '' } = {}) {
-  const factor = Array.from(String(value)).reduce(
+  const factor = splitGraphemes(value).reduce(
     (total, character) => total + characterFactor(character, family),
     0,
   );
@@ -52,7 +57,7 @@ function estimateTextWidth(value, { fontSize = 16, fontWeight = 400, family = ''
 
 function fitWithEllipsis(value, options) {
   const { maxWidth, ellipsis = DEFAULT_ELLIPSIS } = options;
-  const characters = Array.from(value);
+  const characters = splitGraphemes(value);
 
   while (characters.length && estimateTextWidth(`${characters.join('')}${ellipsis}`, options) > maxWidth) {
     characters.pop();
@@ -88,7 +93,7 @@ function tokenize(value) {
     word = '';
   };
 
-  for (const character of Array.from(String(value))) {
+  for (const character of splitGraphemes(value)) {
     if (character === '\n') {
       flushWord();
       tokens.push('\n');
@@ -111,7 +116,7 @@ function splitToken(token, options) {
   const parts = [];
   let current = '';
 
-  for (const character of Array.from(token)) {
+  for (const character of splitGraphemes(token)) {
     if (current && estimateTextWidth(`${current}${character}`, options) > options.maxWidth) {
       parts.push(current);
       current = character;
