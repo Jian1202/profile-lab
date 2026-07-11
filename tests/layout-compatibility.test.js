@@ -6,6 +6,7 @@ const test = require('node:test');
 const { loadConfig } = require('../src/config/load-config');
 const { layoutMissionItems } = require('../src/blocks/mission');
 const { shouldUseSkillColumns } = require('../src/blocks/skills');
+const { layoutTagLines } = require('../src/blocks/projects');
 
 const fixtureDirectory = path.join(__dirname, 'fixtures');
 const configPath = path.join(fixtureDirectory, 'jian1202-regression.yaml');
@@ -54,4 +55,27 @@ test('Skills 根据实际垂直空间决定单列或双列', () => {
   assert.equal(shouldUseSkillColumns(5, options), false);
   assert.equal(shouldUseSkillColumns(6, options), true);
   assert.equal(shouldUseSkillColumns(5, { ...options, height: 220 }), true);
+});
+
+test('Projects 标签按完整 token 换行且不产生行首分隔符', () => {
+  const options = {
+    maxWidth: 184,
+    maxLines: 2,
+    fontSize: 10,
+    family: 'Consolas, monospace',
+    separator: ' · ',
+  };
+  const short = layoutTagLines(['Transformer', 'Education'], options);
+  assert.deepEqual(short, [{ text: 'Transformer · Education', truncated: false }]);
+
+  const wrapped = layoutTagLines(['Transformer', 'Education', 'Visualization'], options);
+  assert.deepEqual(wrapped, [
+    { text: 'Transformer · Education', truncated: false },
+    { text: 'Visualization', truncated: false },
+  ]);
+  assert.doesNotMatch(wrapped[1].text, /^·/u);
+
+  const long = layoutTagLines(['X'.repeat(80)], options);
+  assert.equal(long[0].truncated, true);
+  assert.match(long[0].text, /…$/u);
 });
