@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const { generateProfile, validateProfile } = require('../src');
+const { generateProfile, getEditorManifest, validateProfile } = require('../src');
 const { startPreview } = require('../src/preview/server');
 
 const help = `Profile Lab — A config-driven SVG profile builder.
@@ -9,6 +9,7 @@ Usage:
   profile-lab generate --config <path> --output <path>
   profile-lab validate --config <path>
   profile-lab preview --config <path> --output <path> [--port 4173]
+  profile-lab manifest
   profile-lab --help
 
 Relative paths are resolved from the current working directory.`;
@@ -45,6 +46,14 @@ function run(argv = process.argv.slice(2)) {
 
   if (!command || command === '--help' || command === '-h' || args.includes('--help')) {
     console.log(help);
+    return;
+  }
+
+  if (command === 'manifest') {
+    if (args.length) {
+      throw new Error('manifest 命令不接受参数。');
+    }
+    process.stdout.write(`${JSON.stringify(getEditorManifest(), null, 2)}\n`);
     return;
   }
 
