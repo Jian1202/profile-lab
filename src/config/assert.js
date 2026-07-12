@@ -1,4 +1,6 @@
-const accentTokens = new Set(['blue', 'green', 'gold']);
+const { accentTokens } = require('./options');
+
+const accentTokenSet = new Set(accentTokens);
 
 function fail(path, message) {
   throw new Error(`Invalid profile config: ${path} ${message}`);
@@ -63,8 +65,8 @@ function list(value, path, { minItems = 1, maxItems = Number.POSITIVE_INFINITY }
 }
 
 function accent(value, path) {
-  if (!accentTokens.has(value)) {
-    fail(path, `must use a theme accent: ${[...accentTokens].join(', ')}.`);
+  if (!accentTokenSet.has(value)) {
+    fail(path, `must use a theme accent: ${accentTokens.join(', ')}.`);
   }
 }
 
