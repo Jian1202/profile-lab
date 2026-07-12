@@ -1,5 +1,49 @@
 const { group, line, rect, text } = require('../../utils/svg');
-const { truncateText, wrapText } = require('../../text');
+const { estimateTextWidth, truncateText, wrapText } = require('../../text');
+
+const projectTagLayout = {
+  maxWidth: 184,
+  fontSize: 10,
+  separator: ' · ',
+  oneLineY: 194,
+  twoLineY: [188, 202],
+};
+
+function layoutTagLines(tags, options) {
+  if (options.maxLines === 1) {
+    const fitted = truncateText(tags.join(options.separator), options);
+    return [{ text: fitted.text, truncated: fitted.truncated }];
+  }
+
+  const lines = [];
+  let current = '';
+  let truncated = false;
+
+  for (const tag of tags) {
+    const fittedTag = truncateText(tag, options);
+    const candidate = current ? `${current}${options.separator}${fittedTag.text}` : fittedTag.text;
+
+    if (estimateTextWidth(candidate, options) <= options.maxWidth) {
+      current = candidate;
+      truncated ||= fittedTag.truncated;
+      continue;
+    }
+
+    if (current && lines.length < options.maxLines - 1) {
+      lines.push({ text: current, truncated });
+      current = fittedTag.text;
+      truncated = fittedTag.truncated;
+      continue;
+    }
+
+    const fallback = truncateText(candidate, options);
+    current = fallback.text;
+    truncated = true;
+  }
+
+  if (current) lines.push({ text: current, truncated });
+  return lines;
+}
 
 function measure(_section, { layout }) {
   return { height: layout.blockHeights.projects };
@@ -27,14 +71,29 @@ function render(section, { theme, layout, offsetY, height }) {
       'font-family': fonts.display,
       'font-size': 13,
     }));
-    const tags = truncateText(entry.tags.join(' · '), { maxWidth: 184, fontSize: 10, family: fonts.mono }).text;
+    const tagLines = layoutTagLines(entry.tags, {
+      maxWidth: projectTagLayout.maxWidth,
+      maxLines: description.lines.length === 1 ? 2 : 1,
+      fontSize: projectTagLayout.fontSize,
+      family: fonts.mono,
+      separator: projectTagLayout.separator,
+    });
+    const tagY = tagLines.length === 1 ? [projectTagLayout.oneLineY] : projectTagLayout.twoLineY;
+    const tags = tagLines.map((tag, tagIndex) => text(tag.text, {
+      x: x + 18,
+      y: tagY[tagIndex],
+      fill: colors.text,
+      opacity: 0.6,
+      'font-family': fonts.mono,
+      'font-size': 10,
+    }));
 
     return group([
       rect({ x, y: 76, width: 220, height: 136, rx: 8, fill: colors.background, stroke: colors.border }),
       line({ x1: x + 18, y1: 96, x2: x + 202, y2: 96, stroke: accent, 'stroke-width': 4, 'stroke-linecap': 'round' }),
       text(name, { x: x + 18, y: 130, fill: colors.primary, 'font-family': fonts.mono, 'font-size': 14, 'font-weight': 700 }),
       descriptionLines,
-      text(tags, { x: x + 18, y: 194, fill: colors.text, opacity: 0.6, 'font-family': fonts.mono, 'font-size': 10 }),
+      tags,
     ]);
   });
 
@@ -48,4 +107,4 @@ function render(section, { theme, layout, offsetY, height }) {
   ], { id: 'projects', transform: `translate(0 ${offsetY})` });
 }
 
-module.exports = { measure, render };
+module.exports = { layoutTagLines, measure, render };

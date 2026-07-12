@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.1.2
+
+### Fixed
+
+- Mission items now use available card width before truncation
+- Skills remain single-column while vertical space is sufficient
+- Project tags can use remaining vertical space for a second line
+- Current Jian1202 profile added as a layout regression fixture
+
+### Compatibility
+
+- Existing bundled Jian1202 example remains byte-identical
+- Non-target sections of the current Jian1202 profile remain byte-identical
+- Configuration format and validation limits are unchanged
+
 ## 0.1.1
 
 ### Added
