@@ -6,9 +6,11 @@ const skills = require('../blocks/skills');
 const projects = require('../blocks/projects');
 const footer = require('../blocks/footer');
 const validators = require('../config/block-schema');
+const { editorDefinitions } = require('../editor/definitions');
 
-function createBlock(variants, validate) {
+function createBlock({ variants, validate, editor }) {
   return {
+    editor,
     variants,
     validate(section, path) {
       validate(section.data, `${path}.data`);
@@ -23,13 +25,41 @@ function createBlock(variants, validate) {
 }
 
 const registry = {
-  header: createBlock({ default: header }, validators.header),
-  mission: createBlock({ cards: mission }, validators.mission),
-  timeline: createBlock({ horizontal: timeline }, validators.timeline),
-  radar: createBlock({ default: radar }, validators.radar),
-  skills: createBlock({ tree: skills }, validators.skills),
-  projects: createBlock({ drawer: projects }, validators.projects),
-  footer: createBlock({ default: footer }, validators.footer),
+  header: createBlock({
+    variants: { default: header },
+    validate: validators.header,
+    editor: editorDefinitions.header,
+  }),
+  mission: createBlock({
+    variants: { cards: mission },
+    validate: validators.mission,
+    editor: editorDefinitions.mission,
+  }),
+  timeline: createBlock({
+    variants: { horizontal: timeline },
+    validate: validators.timeline,
+    editor: editorDefinitions.timeline,
+  }),
+  radar: createBlock({
+    variants: { default: radar },
+    validate: validators.radar,
+    editor: editorDefinitions.radar,
+  }),
+  skills: createBlock({
+    variants: { tree: skills },
+    validate: validators.skills,
+    editor: editorDefinitions.skills,
+  }),
+  projects: createBlock({
+    variants: { drawer: projects },
+    validate: validators.projects,
+    editor: editorDefinitions.projects,
+  }),
+  footer: createBlock({
+    variants: { default: footer },
+    validate: validators.footer,
+    editor: editorDefinitions.footer,
+  }),
 };
 
 function getBlock(section) {

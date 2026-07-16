@@ -1,6 +1,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const { loadConfig, resolvePath } = require('./config/load-config');
+const { getEditorManifest } = require('./editor');
 const { renderProfile } = require('./renderer/generate-profile');
 
 function atomicWrite(outputPath, content) {
@@ -33,4 +34,9 @@ function generateProfile({ configPath, outputPath } = {}) {
   return { ...validated, outputPath: resolvedOutputPath };
 }
 
-module.exports = { generateProfile, renderProfile, validateProfile };
+module.exports = {
+  generateProfile,
+  getEditorManifest,
+  renderProfile,
+  validateProfile,
+};

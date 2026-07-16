@@ -14,6 +14,7 @@ Profile Lab 是一个配置驱动的 SVG 个人主页生成器，用来创建高
 - 统一的主题 token 系统
 - 可重复、原子化的 SVG 生成流程
 - 本地预览，并显示清晰的配置错误
+- 提供版本化、机器可读的 Editor Manifest
 - 无框架依赖的 Node.js CLI
 
 ## 快速开始
@@ -41,6 +42,8 @@ node bin/profile-lab.js preview \
   --config examples/jian1202/profile.yaml \
   --output examples/jian1202/assets/profile.svg \
   --port 4173
+
+node bin/profile-lab.js manifest
 ```
 
 启动预览后访问 <http://127.0.0.1:4173/>。
@@ -50,7 +53,7 @@ node bin/profile-lab.js preview \
 ## 核心 API
 
 ```js
-const { generateProfile, validateProfile } = require('./src');
+const { generateProfile, getEditorManifest, validateProfile } = require('./src');
 
 const result = generateProfile({
   configPath: './profile.yaml',
@@ -58,9 +61,38 @@ const result = generateProfile({
 });
 
 console.log(result.width, result.height, result.outputPath);
+
+const manifest = getEditorManifest();
+console.log(manifest.contract, manifest.blocks);
 ```
 
 `generateProfile()` 返回解析后的配置、SVG 字符串、已解析路径、画布宽高和启用的区块。`validateProfile()` 会执行相同的配置解析、Schema 校验、注册表查找和布局测量，但不会写入文件。
+
+## Editor Manifest
+
+Editor Manifest 是供未来本地编辑器读取的只读数据契约，描述页面、主题、区块、变体、编辑控件、容量限制和跨字段提示规则。本阶段只提供 Node.js 查询函数和 CLI JSON 输出，不包含可视化编辑器、HTTP 服务或配置写入能力。
+
+通过 Node API 获取：
+
+```js
+const { getEditorManifest } = require('./src');
+
+const manifest = getEditorManifest();
+console.log(manifest.contract.name); // profile-lab/editor-manifest
+console.log(manifest.contract.version); // 1
+```
+
+通过 CLI 输出格式化 JSON：
+
+```bash
+node bin/profile-lab.js manifest
+```
+
+Manifest 不替代现有配置校验。编辑器可以用它构建控件和即时提示，但保存或渲染前仍应调用 `validateProfile()` 或 `profile-lab validate`。
+
+稳定标识包括 `contract.name`、`contract.version`、block `type`、variant `value`、field `path` 和 field `control`。删除或重命名这些标识、改变字段类型或 control 语义、改变 object-list item 结构或顶层结构，都属于破坏性变更；新增 block、variant、option、帮助文案或可选描述 metadata 通常是兼容扩展。
+
+消费者必须只接受自己支持的 `contract.version`，对更高且未知的主版本明确拒绝，并容忍同一主版本中的未知附加字段。Manifest 契约版本独立于 package 版本，也不会写入 `profile.yaml`。
 
 ## profile.yaml
 
@@ -140,6 +172,7 @@ profile.yaml
 ```text
 bin/                 CLI 入口
 src/config/          YAML 加载与配置校验
+src/editor/          Editor Manifest 定义、组装与契约自校验
 src/registry/        区块类型和变体分发
 src/renderer/        动态布局与根 SVG 渲染
 src/layout/          通用布局配置
@@ -158,6 +191,7 @@ tests/               配置、CLI、生成与预览测试
 npm test
 npm run validate:example
 npm run generate:example
+npm run manifest
 npm run preview:example
 ```
 

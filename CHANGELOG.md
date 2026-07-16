@@ -1,5 +1,25 @@
 # Changelog
 
+## 0.2.0-alpha.1
+
+### Added
+
+- Versioned machine-readable Editor Manifest
+- Page, theme, section and block field metadata
+- Registry and variant compatibility checks
+- Shared accent option definitions
+- `getEditorManifest()` read-only API
+- `profile-lab manifest` CLI command
+- Manifest determinism and contract tests
+
+### Compatibility
+
+- Profile YAML format is unchanged
+- Rendering behavior is unchanged
+- Existing CLI commands remain compatible
+- Bundled and regression SVG outputs remain unchanged
+- Visual editor and write APIs are not included yet
+
 ## 0.1.2
 
 ### Fixed
