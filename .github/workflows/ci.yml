@@ -27,6 +27,9 @@ jobs:
       - name: Run tests
         run: npm test
 
+      - name: Build visual editor
+        run: npm run editor:build
+
       - name: Generate Jian1202 example
         run: npm run generate:example
 

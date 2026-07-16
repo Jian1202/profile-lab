@@ -1,5 +1,25 @@
 # Changelog
 
+## 0.2.0-alpha.2
+
+### Added
+
+- Local visual editor V1
+- Manifest-driven Vue forms
+- Live validation and SVG preview
+- Atomic YAML and SVG saving
+- Single-level rollback
+- Local editor CLI and API
+- External configuration path support
+
+### Compatibility
+
+- Profile schema unchanged
+- Editor Manifest contract remains version 1
+- Existing CLI commands remain compatible
+- Existing SVG outputs remain unchanged
+- Personal profile remains pinned to v0.1.2
+
 ## 0.2.0-alpha.1
 
 ### Added
