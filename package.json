@@ -1,6 +1,6 @@
 {
   "name": "profile-lab",
-  "version": "0.2.0-alpha.1",
+  "version": "0.2.0-alpha.2",
   "private": true,
   "description": "A config-driven SVG profile builder.",
   "license": "MIT",
@@ -8,6 +8,9 @@
     "profile-lab": "./bin/profile-lab.js"
   },
   "scripts": {
+    "editor:build": "vite build --config editor/vite.config.js",
+    "editor:check": "npm run editor:build",
+    "editor:example": "npm run editor:build && node bin/profile-lab.js editor --config examples/jian1202/profile.yaml --output examples/jian1202/assets/profile.svg --port 4173",
     "generate:example": "node bin/profile-lab.js generate --config examples/jian1202/profile.yaml --output examples/jian1202/assets/profile.svg",
     "manifest": "node bin/profile-lab.js manifest",
     "validate:example": "node bin/profile-lab.js validate --config examples/jian1202/profile.yaml",
@@ -21,6 +24,10 @@
     "yaml": "^2.6.1"
   },
   "devDependencies": {
-    "saxes": "^6.0.0"
+    "@lucide/vue": "^1.24.0",
+    "@vitejs/plugin-vue": "^5.2.4",
+    "saxes": "^6.0.0",
+    "vite": "^6.4.3",
+    "vue": "^3.5.39"
   }
 }

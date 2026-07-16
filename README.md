@@ -2,7 +2,7 @@
 
 Profile Lab 是一个配置驱动的 SVG 个人主页生成器，用来创建高度自定义的 GitHub Profile README。
 
-它会将 YAML 配置经过数据校验、区块注册、布局计算和主题渲染，稳定地生成一张完整 SVG。项目不依赖前端框架，也不需要外部渲染服务。
+它会将 YAML 配置经过数据校验、区块注册、布局计算和主题渲染，稳定地生成一张完整 SVG。生成器仍是轻量的 Node.js 工具；仓库同时提供基于 Vue 的本地可视化编辑器，不需要外部渲染服务。
 
 ## 功能特点
 
@@ -15,7 +15,9 @@ Profile Lab 是一个配置驱动的 SVG 个人主页生成器，用来创建高
 - 可重复、原子化的 SVG 生成流程
 - 本地预览，并显示清晰的配置错误
 - 提供版本化、机器可读的 Editor Manifest
-- 无框架依赖的 Node.js CLI
+- 可编辑、实时校验、实时预览的本地可视化编辑器
+- YAML 与 SVG 双文件事务保存和单级回滚
+- 轻量的 Node.js CLI
 
 ## 快速开始
 
@@ -27,6 +29,14 @@ npm run generate:example
 ```
 
 生成的示例文件位于 `examples/jian1202/assets/profile.svg`。
+
+启动可视化编辑器：
+
+```bash
+npm run editor:example
+```
+
+浏览器访问 <http://127.0.0.1:4173/>。详细用法见 [本地可视化编辑器](docs/editor.md)。
 
 ## 命令行使用
 
@@ -43,12 +53,17 @@ node bin/profile-lab.js preview \
   --output examples/jian1202/assets/profile.svg \
   --port 4173
 
+node bin/profile-lab.js editor \
+  --config examples/jian1202/profile.yaml \
+  --output examples/jian1202/assets/profile.svg \
+  --port 4173
+
 node bin/profile-lab.js manifest
 ```
 
-启动预览后访问 <http://127.0.0.1:4173/>。
+`preview` 提供只读 SVG 页面；`editor` 提供 Manifest 驱动的配置编辑、实时校验、实时预览、保存和回滚。两者都只监听 `127.0.0.1`。
 
-`--config` 和 `--output` 都支持绝对路径。相对路径会以当前工作目录为基准解析。程序会在写入文件前完成全部配置校验；校验通过后，先写入临时文件，再以原子重命名的方式更新目标文件。
+`--config` 和 `--output` 都支持绝对路径。相对路径会以当前工作目录为基准解析。编辑器保存时会重新格式化 YAML，原有注释可能丢失；配置与 SVG 会在同一事务中更新，任一步失败都会恢复保存前的两个文件。
 
 ## 核心 API
 
@@ -70,7 +85,7 @@ console.log(manifest.contract, manifest.blocks);
 
 ## Editor Manifest
 
-Editor Manifest 是供未来本地编辑器读取的只读数据契约，描述页面、主题、区块、变体、编辑控件、容量限制和跨字段提示规则。本阶段只提供 Node.js 查询函数和 CLI JSON 输出，不包含可视化编辑器、HTTP 服务或配置写入能力。
+Editor Manifest 是本地编辑器使用的只读数据契约，描述页面、主题、区块、变体、编辑控件、容量限制和跨字段提示规则。Vue 表单直接读取这份契约，七个区块不维护各自独立的手写表单。
 
 通过 Node API 获取：
 
@@ -88,7 +103,7 @@ console.log(manifest.contract.version); // 1
 node bin/profile-lab.js manifest
 ```
 
-Manifest 不替代现有配置校验。编辑器可以用它构建控件和即时提示，但保存或渲染前仍应调用 `validateProfile()` 或 `profile-lab validate`。
+Manifest 不替代现有配置校验。编辑器用它构建控件和即时提示，但实时预览与保存仍会经过现有 Validator、Registry 和 Renderer。
 
 稳定标识包括 `contract.name`、`contract.version`、block `type`、variant `value`、field `path` 和 field `control`。删除或重命名这些标识、改变字段类型或 control 语义、改变 object-list item 结构或顶层结构，都属于破坏性变更；新增 block、variant、option、帮助文案或可选描述 metadata 通常是兼容扩展。
 
@@ -170,9 +185,19 @@ profile.yaml
 ```
 
 ```text
+Editor Manifest + profile.yaml
+  -> Vue 动态表单
+  -> 本地 Editor API
+  -> Validator + Renderer
+  -> 实时 SVG 预览
+  -> YAML / SVG 双文件事务保存
+```
+
+```text
 bin/                 CLI 入口
+editor/              Vue 可视化编辑器源码与 Vite 配置
 src/config/          YAML 加载与配置校验
-src/editor/          Editor Manifest 定义、组装与契约自校验
+src/editor/          Manifest、Editor API、HTTP 服务、序列化与保存事务
 src/registry/        区块类型和变体分发
 src/renderer/        动态布局与根 SVG 渲染
 src/layout/          通用布局配置
@@ -180,15 +205,17 @@ src/themes/          主题预设
 src/blocks/          区块实现
 src/text/            确定性文本测量、截断与换行
 src/preview/         本地预览服务
-src/utils/           SVG DSL
+src/utils/           SVG DSL 与通用文件工具
 examples/            完整配置和最小配置示例
-tests/               配置、CLI、生成与预览测试
+tests/               配置、CLI、生成、Editor API、事务与前端纯函数测试
 ```
 
 ## 开发与验证
 
 ```bash
 npm test
+npm run editor:build
+npm run editor:example
 npm run validate:example
 npm run generate:example
 npm run manifest
@@ -201,13 +228,16 @@ npm run preview:example
 - 每种区块类型目前只有一个已实现变体
 - 仅支持静态数据
 - 区块采用有限容量布局
-- 暂无浏览器可视化编辑器
+- 编辑器暂不支持新增或删除 Section
+- 编辑器暂不支持修改 Section type、variant 或自由拖拽画布
+- 编辑器仅保存单级、当前进程内的回滚记录
+- YAML 保存不会保留原注释
 - 暂未接入 GitHub API
 - 尚未发布为 npm 包
 
 ## 后续方向
 
-- 基于 Schema 的本地可视化编辑器
+- 更完整的编辑器结构操作与可选配置迁移
 - 更多风格明确的主题和区块变体
 - 可选的动态数据合并层
 - 可复用的 GitHub Actions 集成方式

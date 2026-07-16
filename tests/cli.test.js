@@ -4,6 +4,7 @@ const os = require('node:os');
 const path = require('node:path');
 const { spawnSync } = require('node:child_process');
 const test = require('node:test');
+const { run: runInProcess } = require('../bin/profile-lab');
 
 const root = path.resolve(__dirname, '..');
 const cli = path.join(root, 'bin', 'profile-lab.js');
@@ -70,6 +71,7 @@ test('CLI help 展示可用命令', () => {
   assert.match(result.stdout, /generate/);
   assert.match(result.stdout, /validate/);
   assert.match(result.stdout, /preview/);
+  assert.match(result.stdout, /editor/);
 });
 
 test('CLI validate 对显示容量错误返回非零退出码和完整路径', () => {
@@ -78,4 +80,47 @@ test('CLI validate 对显示容量错误返回非零退出码和完整路径', (
   assert.notEqual(result.status, 0);
   assert.match(result.stderr, /sections\[0\] "mission"\.data\.tracks\[0\]\.items/);
   assert.match(result.stderr, /received 7/);
+});
+
+test('CLI editor 缺少 config 或 output 时返回清晰错误', () => {
+  const missingConfig = run(['editor', '--output', 'profile.svg']);
+  const missingOutput = run(['editor', '--config', config]);
+
+  assert.notEqual(missingConfig.status, 0);
+  assert.match(missingConfig.stderr, /--config/);
+  assert.notEqual(missingOutput.status, 0);
+  assert.match(missingOutput.stderr, /--output/);
+});
+
+test('CLI editor 拒绝非法端口', () => {
+  const result = run([
+    'editor',
+    '--config', config,
+    '--output', 'profile.svg',
+    '--port', '70000',
+  ]);
+
+  assert.notEqual(result.status, 0);
+  assert.match(result.stderr, /1 到 65535/);
+});
+
+test('CLI editor 正确传递启动参数', async () => {
+  let received;
+  await runInProcess([
+    'editor',
+    '--config', 'example.yaml',
+    '--output', 'profile.svg',
+    '--port', '4188',
+  ], {
+    startEditor(options) {
+      received = options;
+      return Promise.resolve();
+    },
+  });
+
+  assert.deepEqual(received, {
+    configPath: 'example.yaml',
+    outputPath: 'profile.svg',
+    port: 4188,
+  });
 });
