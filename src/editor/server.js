@@ -285,7 +285,8 @@ function startEditor(options) {
     server.once('error', handleError);
     server.listen(port, '127.0.0.1', () => {
       server.off('error', handleError);
-      console.log(`Profile Lab editor: http://127.0.0.1:${port}`);
+      const address = server.address();
+      console.log(`Profile Lab editor: http://127.0.0.1:${address.port}`);
       resolve(server);
     });
   });
