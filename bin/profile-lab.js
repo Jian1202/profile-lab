@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 const { generateProfile, getEditorManifest, validateProfile } = require('../src');
+const { startEditor } = require('../src/editor/server');
 const { startPreview } = require('../src/preview/server');
 
 const help = `Profile Lab — A config-driven SVG profile builder.
@@ -9,6 +10,7 @@ Usage:
   profile-lab generate --config <path> --output <path>
   profile-lab validate --config <path>
   profile-lab preview --config <path> --output <path> [--port 4173]
+  profile-lab editor --config <path> --output <path> [--port 4173]
   profile-lab manifest
   profile-lab --help
 
@@ -41,8 +43,17 @@ function requireOption(options, name, command) {
   }
 }
 
-function run(argv = process.argv.slice(2)) {
+function parsePort(value) {
+  const port = value === undefined ? 4173 : Number(value);
+  if (!Number.isInteger(port) || port < 1 || port > 65535) {
+    throw new Error('--port 必须是 1 到 65535 的整数。');
+  }
+  return port;
+}
+
+function run(argv = process.argv.slice(2), services = {}) {
   const [command, ...args] = argv;
+  const editorStarter = services.startEditor || startEditor;
 
   if (!command || command === '--help' || command === '-h' || args.includes('--help')) {
     console.log(help);
@@ -78,24 +89,30 @@ function run(argv = process.argv.slice(2)) {
 
   if (command === 'preview') {
     requireOption(options, 'output', command);
-    const port = options.port === undefined ? 4173 : Number(options.port);
-    if (!Number.isInteger(port) || port < 1 || port > 65535) {
-      throw new Error('--port 必须是 1 到 65535 的整数。');
-    }
+    const port = parsePort(options.port);
     startPreview({ configPath: options.config, outputPath: options.output, port });
     return;
+  }
+
+  if (command === 'editor') {
+    requireOption(options, 'output', command);
+    return editorStarter({
+      configPath: options.config,
+      outputPath: options.output,
+      port: parsePort(options.port),
+    });
   }
 
   throw new Error(`未知命令：${command}`);
 }
 
 if (require.main === module) {
-  try {
-    run();
-  } catch (error) {
+  Promise.resolve()
+    .then(() => run())
+    .catch((error) => {
     console.error(error.message);
     process.exitCode = 1;
-  }
+    });
 }
 
-module.exports = { help, parseOptions, run };
+module.exports = { help, parseOptions, parsePort, run };
